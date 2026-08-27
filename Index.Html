@@ -1,0 +1,831 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Retalh'Artes — Cada pedaço de tecido, uma história de afeto</title>
+<meta name="description" content="Retalh'Artes: peças exclusivas de artesanato em retalhos — colchas, almofadas, jogos americanos e nécessaires feitos à mão com afeto e sustentabilidade.">
+
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,500;0,600;0,700;1,500;1,600&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+
+<script src="https://unpkg.com/lucide@latest/dist/umd/lucide.min.js"></script>
+
+<style>
+  :root{
+    --bg: #FBF6EC;
+    --card: #FFFDF8;
+    --ink: #3C2417;
+    --ink-soft: #6b5645;
+    --terracotta: #C1602A;
+    --terracotta-dark: #9C4B1F;
+    --mustard: #D9A73D;
+    --mustard-soft: #EBCB86;
+    --olive: #6E7C4F;
+    --olive-dark: #4F5A38;
+    --beige: #EAD9BE;
+    --stitch: repeating-linear-gradient(90deg, currentColor 0 8px, transparent 8px 16px);
+    --radius: 6px;
+    --shadow: 0 10px 30px -12px rgba(60, 36, 23, 0.25);
+  }
+
+  *{ box-sizing:border-box; margin:0; padding:0; }
+  html{ scroll-behavior:smooth; }
+
+  @media (prefers-reduced-motion: reduce){
+    html{ scroll-behavior:auto; }
+    *{ animation-duration: 0.01ms !important; animation-iteration-count: 1 !important; transition-duration: 0.01ms !important; }
+  }
+
+  body{
+    background: var(--bg);
+    color: var(--ink);
+    font-family: 'Inter', sans-serif;
+    line-height: 1.6;
+    overflow-x: hidden;
+  }
+
+  img{ max-width:100%; display:block; }
+
+  h1,h2,h3, .display{
+    font-family: 'Playfair Display', serif;
+    color: var(--ink);
+    line-height: 1.15;
+    font-weight: 600;
+  }
+
+  a{ color:inherit; text-decoration:none; }
+  ul{ list-style:none; }
+
+  .container{
+    width:100%;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+  }
+
+  .eyebrow{
+    display:inline-flex;
+    align-items:center;
+    gap:8px;
+    font-size: 0.78rem;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    font-weight: 600;
+    color: var(--terracotta-dark);
+    margin-bottom: 14px;
+  }
+  .eyebrow::before{
+    content:"";
+    width: 22px;
+    height: 2px;
+    background: var(--terracotta);
+    display:inline-block;
+  }
+
+  /* Focus visibility */
+  a:focus-visible, button:focus-visible{
+    outline: 2px solid var(--terracotta-dark);
+    outline-offset: 3px;
+    border-radius: 3px;
+  }
+
+  /* ============ BUTTONS ============ */
+  .btn{
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:8px;
+    padding: 14px 28px;
+    border-radius: var(--radius);
+    font-weight: 600;
+    font-size: 0.95rem;
+    border: 2px solid transparent;
+    cursor:pointer;
+    transition: transform .18s ease, box-shadow .18s ease, background .18s ease, color .18s ease;
+    white-space: nowrap;
+  }
+  .btn-primary{
+    background: var(--terracotta);
+    color: #FFF9F0;
+    box-shadow: 0 8px 20px -8px rgba(193,96,42,0.6);
+  }
+  .btn-primary:hover{ background: var(--terracotta-dark); transform: translateY(-2px); }
+
+  .btn-outline{
+    background: transparent;
+    color: var(--ink);
+    border-color: var(--ink);
+  }
+  .btn-outline:hover{ background: var(--ink); color: var(--bg); transform: translateY(-2px); }
+
+  .btn-whatsapp{
+    background: var(--olive);
+    color: #fff;
+  }
+  .btn-whatsapp:hover{ background: var(--olive-dark); transform: translateY(-2px); }
+
+  .btn-sm{ padding: 10px 18px; font-size: 0.85rem; width:100%; }
+
+  /* ============ HEADER ============ */
+  header{
+    position: sticky;
+    top:0;
+    z-index: 100;
+    background: rgba(251, 246, 236, 0.92);
+    backdrop-filter: blur(8px);
+    border-bottom: 2px dashed var(--beige);
+  }
+  .nav-wrap{
+    display:flex;
+    align-items:center;
+    justify-content:space-between;
+    padding: 18px 24px;
+  }
+  .logo{
+    display:flex;
+    align-items:center;
+    gap:10px;
+    font-family:'Playfair Display', serif;
+    font-style: italic;
+    font-weight: 700;
+    font-size: 1.5rem;
+    color: var(--terracotta-dark);
+  }
+  .logo .logo-icon{
+    width: 34px; height:34px;
+    border-radius:50%;
+    background: var(--mustard-soft);
+    display:flex; align-items:center; justify-content:center;
+    color: var(--terracotta-dark);
+    flex-shrink:0;
+  }
+  .logo .logo-icon svg{ width:18px; height:18px; }
+
+  nav.main-nav ul{
+    display:flex;
+    gap: 34px;
+    align-items:center;
+  }
+  nav.main-nav a{
+    font-weight:500;
+    font-size:0.95rem;
+    position:relative;
+    padding: 4px 0;
+    color: var(--ink);
+  }
+  nav.main-nav a::after{
+    content:"";
+    position:absolute;
+    left:0; bottom:-2px;
+    width:0%; height:2px;
+    background: var(--terracotta);
+    transition: width .25s ease;
+  }
+  nav.main-nav a:hover::after{ width:100%; }
+
+  .nav-actions{ display:flex; align-items:center; gap:18px; }
+
+  .hamburger{
+    display:none;
+    background:none;
+    border:none;
+    cursor:pointer;
+    color: var(--ink);
+    padding: 6px;
+  }
+
+  @media (max-width: 900px){
+    nav.main-nav{
+      position: fixed;
+      top: 73px;
+      left:0; right:0;
+      background: var(--bg);
+      border-bottom: 2px dashed var(--beige);
+      max-height: 0;
+      overflow:hidden;
+      transition: max-height .35s ease;
+    }
+    nav.main-nav.open{ max-height: 400px; }
+    nav.main-nav ul{
+      flex-direction:column;
+      align-items: flex-start;
+      gap:0;
+      padding: 10px 24px 26px;
+    }
+    nav.main-nav ul li{ width:100%; padding: 12px 0; border-bottom:1px solid var(--beige); }
+    .nav-actions .btn-whatsapp-desktop{ display:none; }
+    .hamburger{ display:flex; }
+  }
+  @media (min-width: 901px){
+    .hamburger{ display:none; }
+  }
+
+  /* ============ HERO ============ */
+  .hero{
+    position:relative;
+    padding: 90px 24px 110px;
+    overflow:hidden;
+  }
+  .hero-grid{
+    max-width: 1200px;
+    margin: 0 auto;
+    display:grid;
+    grid-template-columns: 1.05fr 0.95fr;
+    gap: 50px;
+    align-items:center;
+  }
+  .hero h1{
+    font-size: clamp(2.3rem, 4.6vw, 3.6rem);
+    font-style: italic;
+    margin-bottom: 22px;
+  }
+  .hero h1 span{ color: var(--terracotta); }
+  .hero p.lead{
+    font-size: 1.12rem;
+    color: var(--ink-soft);
+    max-width: 480px;
+    margin-bottom: 34px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+
+  .hero-badges{
+    display:flex;
+    gap: 26px;
+    margin-top: 42px;
+    flex-wrap:wrap;
+  }
+  .hero-badge{ display:flex; align-items:center; gap:9px; font-size:0.88rem; color:var(--ink-soft); font-weight:500; }
+  .hero-badge svg{ color: var(--olive); flex-shrink:0; }
+
+  /* Signature quilt-block visual */
+  .quilt{
+    position: relative;
+    width: 100%;
+    aspect-ratio: 1/1;
+    max-width: 460px;
+    margin-left:auto;
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    grid-template-rows: repeat(4, 1fr);
+    gap: 6px;
+    padding: 22px;
+    background: var(--card);
+    border-radius: 14px;
+    box-shadow: var(--shadow);
+    transform: rotate(2deg);
+  }
+  .quilt .patch{ border-radius: 3px; position:relative; }
+  .quilt .patch.tri{
+    background: linear-gradient(135deg, var(--a) 50%, var(--b) 50%);
+  }
+  .quilt .patch.solid{ background: var(--a); }
+  .quilt .patch svg{
+    position:absolute; inset:0; margin:auto;
+    width: 40%; height:40%;
+    color: rgba(255,255,255,0.85);
+    opacity: 0.9;
+  }
+
+  @media (max-width: 900px){
+    .hero-grid{ grid-template-columns: 1fr; text-align:center; }
+    .hero p.lead{ margin-left:auto; margin-right:auto; }
+    .hero-ctas{ justify-content:center; }
+    .hero-badges{ justify-content:center; }
+    .quilt{ margin: 0 auto; max-width: 320px; transform: rotate(0); }
+  }
+
+  /* ============ SECTION SHARED ============ */
+  section{ padding: 96px 0; }
+  .section-head{ text-align:center; max-width: 640px; margin: 0 auto 56px; }
+  .section-head h2{ font-size: clamp(1.9rem, 3.4vw, 2.6rem); margin-bottom: 14px; font-style: italic;}
+  .section-head p{ color: var(--ink-soft); font-size: 1.05rem; }
+
+  .stitch-divider{
+    height: 2px;
+    background-image: linear-gradient(90deg, var(--beige) 50%, transparent 50%);
+    background-size: 16px 2px;
+    max-width: 1200px;
+    margin: 0 auto;
+  }
+
+  /* ============ GALLERY ============ */
+  #criacoes{ background: var(--beige); }
+  .gallery-grid{
+    display:grid;
+    grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+    gap: 30px;
+  }
+  .product-card{
+    background: var(--card);
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: var(--shadow);
+    border: 2px dashed transparent;
+    transition: transform .25s ease, border-color .25s ease;
+    display:flex;
+    flex-direction:column;
+  }
+  .product-card:hover{ transform: translateY(-6px); border-color: var(--terracotta); }
+  .product-media{
+    position:relative;
+    aspect-ratio: 4/3;
+    overflow:hidden;
+  }
+  .product-media img{ width:100%; height:100%; object-fit:cover; transition: transform .5s ease; }
+  .product-card:hover .product-media img{ transform: scale(1.06); }
+
+  .tag{
+    position:absolute;
+    top: 14px; left: 14px;
+    font-size: 0.72rem;
+    font-weight:700;
+    letter-spacing: 0.04em;
+    padding: 6px 12px;
+    border-radius: 999px;
+    color:#fff;
+    text-transform: uppercase;
+  }
+  .tag.bestseller{ background: var(--terracotta); }
+  .tag.encomenda{ background: var(--olive); }
+
+  .product-body{ padding: 20px 22px 22px; display:flex; flex-direction:column; gap:10px; flex:1; }
+  .product-body h3{ font-size: 1.2rem; }
+  .product-body .price{ font-weight:700; color: var(--terracotta-dark); font-size: 1.05rem; margin-top:auto; }
+  .product-desc{ font-size: 0.9rem; color: var(--ink-soft); }
+
+  /* ============ QUEM SOMOS ============ */
+  .about-grid{
+    display:grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+    align-items:center;
+  }
+  .about-media{
+    position:relative;
+    border-radius: 12px;
+    overflow:hidden;
+    box-shadow: var(--shadow);
+    aspect-ratio: 4/5;
+  }
+  .about-media img{ width:100%; height:100%; object-fit:cover; }
+  .about-media::after{
+    content:"";
+    position:absolute; inset:0;
+    border: 10px solid var(--card);
+    border-radius: 12px;
+    pointer-events:none;
+  }
+  .about-text p{ color: var(--ink-soft); margin-bottom: 18px; font-size: 1.02rem; }
+  .about-text p:first-of-type::first-letter{
+    font-family:'Playfair Display', serif;
+    font-size: 3.2rem;
+    float:left;
+    line-height: 0.8;
+    padding: 6px 8px 0 0;
+    color: var(--terracotta);
+    font-style: italic;
+  }
+  .about-values{ display:flex; gap: 26px; margin-top: 30px; flex-wrap:wrap; }
+  .value-pill{
+    display:flex; align-items:center; gap:8px;
+    background: var(--beige);
+    padding: 10px 16px;
+    border-radius: 999px;
+    font-size: 0.85rem;
+    font-weight:600;
+    color: var(--olive-dark);
+  }
+
+  @media (max-width: 860px){
+    .about-grid{ grid-template-columns:1fr; }
+    .about-media{ order:-1; max-width: 420px; margin:0 auto; }
+  }
+
+  /* ============ ENCOMENDAS ============ */
+  #encomendas{ background: var(--olive-dark); color: #FBF6EC; }
+  #encomendas .section-head h2{ color:#FBF6EC; }
+  #encomendas .section-head p{ color: #D9D6C6; }
+
+  .steps{
+    display:grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 26px;
+    margin-bottom: 60px;
+  }
+  .step{
+    background: rgba(255,255,255,0.06);
+    border: 2px dashed rgba(255,255,255,0.25);
+    border-radius: 10px;
+    padding: 28px 22px;
+    text-align:center;
+  }
+  .step .num{
+    width: 44px; height:44px;
+    border-radius:50%;
+    background: var(--mustard);
+    color: var(--ink);
+    display:flex; align-items:center; justify-content:center;
+    font-weight:700;
+    font-family:'Playfair Display', serif;
+    margin: 0 auto 16px;
+  }
+  .step h3{ color:#FBF6EC; font-size:1.05rem; margin-bottom:8px; }
+  .step p{ color:#D9D6C6; font-size:0.88rem; }
+
+  @media (max-width: 860px){ .steps{ grid-template-columns: 1fr 1fr; } }
+  @media (max-width: 520px){ .steps{ grid-template-columns: 1fr; } }
+
+  .final-cta{
+    text-align:center;
+    background: rgba(255,255,255,0.06);
+    border-radius: 14px;
+    padding: 52px 24px;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .final-cta h3{ color:#FBF6EC; font-size: clamp(1.5rem,3vw,2.1rem); margin-bottom:12px; font-style:italic; }
+  .final-cta p{ color:#D9D6C6; margin-bottom: 28px; }
+
+  /* ============ FOOTER ============ */
+  footer{
+    background: var(--ink);
+    color: #E9DFD3;
+    padding: 56px 0 26px;
+  }
+  .footer-grid{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap: 32px;
+    padding-bottom: 34px;
+    border-bottom: 2px dashed rgba(255,255,255,0.15);
+    margin-bottom: 22px;
+  }
+  .footer-logo{ font-family:'Playfair Display', serif; font-style:italic; font-size:1.4rem; color:#F3E4C8; margin-bottom: 10px; }
+  .footer-col p{ color:#C9BBA6; font-size:0.9rem; max-width:320px; }
+  .footer-col h4{ font-size:0.85rem; text-transform:uppercase; letter-spacing:0.08em; color:#F3E4C8; margin-bottom: 14px; }
+  .social-links{ display:flex; gap:14px; }
+  .social-links a{
+    width: 38px; height:38px;
+    border-radius:50%;
+    border: 1px solid rgba(255,255,255,0.25);
+    display:flex; align-items:center; justify-content:center;
+    transition: background .2s ease, border-color .2s ease;
+  }
+  .social-links a:hover{ background: var(--terracotta); border-color: var(--terracotta); }
+  .footer-bottom{
+    display:flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+    gap:10px;
+    font-size: 0.82rem;
+    color: #A8977E;
+  }
+
+  /* Floating WhatsApp button (mobile-friendly) */
+  .float-wa{
+    position: fixed;
+    bottom: 22px; right: 22px;
+    width: 58px; height:58px;
+    border-radius:50%;
+    background: var(--olive);
+    color:#fff;
+    display:flex; align-items:center; justify-content:center;
+    box-shadow: 0 10px 24px -6px rgba(0,0,0,0.4);
+    z-index: 90;
+    transition: transform .2s ease;
+  }
+  .float-wa:hover{ transform: scale(1.08); background: var(--olive-dark); }
+</style>
+</head>
+<body>
+
+<header>
+  <div class="nav-wrap">
+    <a href="#inicio" class="logo">
+      <span class="logo-icon"><i data-lucide="scissors"></i></span>
+      Retalh'Artes
+    </a>
+
+    <nav class="main-nav" id="mainNav">
+      <ul>
+        <li><a href="#inicio" class="nav-link">Início</a></li>
+        <li><a href="#criacoes" class="nav-link">Nossas Criações</a></li>
+        <li><a href="#historia" class="nav-link">Quem Somos</a></li>
+        <li><a href="#encomendas" class="nav-link">Encomendas</a></li>
+        <li class="show-mobile-only">
+          <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20Retalh%27Artes!%20Gostaria%20de%20saber%20mais%20sobre%20as%20pe%C3%A7as." class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+            <i data-lucide="message-circle" style="width:16px;height:16px"></i> WhatsApp
+          </a>
+        </li>
+      </ul>
+    </nav>
+
+    <div class="nav-actions">
+      <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20Retalh%27Artes!%20Gostaria%20de%20saber%20mais%20sobre%20as%20pe%C3%A7as." class="btn btn-whatsapp btn-whatsapp-desktop" target="_blank" rel="noopener">
+        <i data-lucide="message-circle" style="width:17px;height:17px"></i> Fale no WhatsApp
+      </a>
+      <button class="hamburger" id="hamburgerBtn" aria-label="Abrir menu" aria-expanded="false" aria-controls="mainNav">
+        <i data-lucide="menu" id="iconMenu"></i>
+      </button>
+    </div>
+  </div>
+</header>
+
+<main>
+
+  <!-- ===================== HERO ===================== -->
+  <section class="hero" id="inicio">
+    <div class="hero-grid">
+      <div>
+        <span class="eyebrow">Feito à mão, com afeto</span>
+        <h1>Retalh'Artes: cada pedaço de tecido, <span>uma história de afeto</span>.</h1>
+        <p class="lead">Transformamos retalhos de tecido em peças exclusivas e sustentáveis — colchas, almofadas e acessórios que carregam história, cor e um toque acolhedor para a sua casa.</p>
+        <div class="hero-ctas">
+          <a href="#criacoes" class="btn btn-primary">
+            <i data-lucide="shopping-bag" style="width:18px;height:18px"></i> Ver Nossas Criações
+          </a>
+          <a href="#encomendas" class="btn btn-outline">Encomendar peça exclusiva</a>
+        </div>
+        <div class="hero-badges">
+          <div class="hero-badge"><i data-lucide="leaf" style="width:18px;height:18px"></i> Sustentável, do retalho à peça</div>
+          <div class="hero-badge"><i data-lucide="heart-handshake" style="width:18px;height:18px"></i> Peças únicas, feitas sob medida</div>
+        </div>
+      </div>
+
+      <div class="quilt" aria-hidden="true">
+        <div class="patch tri" style="--a:#C1602A; --b:#EAD9BE"></div>
+        <div class="patch solid" style="--a:#D9A73D"></div>
+        <div class="patch solid" style="--a:#6E7C4F"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20M2 12h20"/></svg></div>
+        <div class="patch tri" style="--a:#EAD9BE; --b:#C1602A"></div>
+
+        <div class="patch solid" style="--a:#6E7C4F"></div>
+        <div class="patch tri" style="--a:#D9A73D; --b:#6E7C4F"></div>
+        <div class="patch tri" style="--a:#C1602A; --b:#D9A73D"></div>
+        <div class="patch solid" style="--a:#EAD9BE"></div>
+
+        <div class="patch tri" style="--a:#6E7C4F; --b:#C1602A"></div>
+        <div class="patch solid" style="--a:#EAD9BE"></div>
+        <div class="patch solid" style="--a:#C1602A"></div>
+        <div class="patch tri" style="--a:#D9A73D; --b:#EAD9BE"></div>
+
+        <div class="patch solid" style="--a:#D9A73D"></div>
+        <div class="patch tri" style="--a:#6E7C4F; --b:#EAD9BE"></div>
+        <div class="patch solid" style="--a:#C1602A"></div>
+        <div class="patch solid" style="--a:#6E7C4F"></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="stitch-divider"></div>
+
+  <!-- ===================== GALERIA / PRODUTOS ===================== -->
+  <section id="criacoes">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="justify-content:center">Nossas Criações</span>
+        <h2>Peças que contam histórias</h2>
+        <p>Cada item é costurado à mão com retalhos selecionados — nenhuma peça sai igual à outra.</p>
+      </div>
+
+      <div class="gallery-grid">
+
+        <article class="product-card">
+          <div class="product-media">
+            <span class="tag bestseller">Mais Vendido</span>
+            <img src="https://m.media-amazon.com/images/I/81fn3ZBOGzL._AC_UF894,1000_QL80_.jpg" alt="Colcha de retalhos artesanal em tons terrosos">
+          </div>
+          <div class="product-body">
+            <h3>Colcha Patchwork Terracota</h3>
+            <p class="product-desc">Colcha dupla-face em retalhos de algodão, costurada à mão com acabamento em ziguezague.</p>
+            <span class="price">a partir de R$ 320,00</span>
+            <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Colcha%20Patchwork%20Terracota!" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+              <i data-lucide="message-circle" style="width:15px;height:15px"></i> Pedir no WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <span class="tag encomenda">Sob Encomenda</span>
+            <img src="https://images.unsplash.com/photo-1616627561950-9f746e330187?w=700&auto=format&fit=crop&q=70" alt="Almofadas de retalhos coloridas sobre sofá">
+          </div>
+          <div class="product-body">
+            <h3>Almofada Girassol Mostarda</h3>
+            <p class="product-desc">Almofada 45x45cm em retalhos mostarda e oliva, enchimento antialérgico incluso.</p>
+            <span class="price">R$ 89,00 (unidade)</span>
+            <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Almofada%20Girassol%20Mostarda!" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+              <i data-lucide="message-circle" style="width:15px;height:15px"></i> Pedir no WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <span class="tag bestseller">Mais Vendido</span>
+            <img src="https://images.unsplash.com/photo-1600166898405-da9535204843?w=700&auto=format&fit=crop&q=70" alt="Jogo americano de retalhos sobre mesa de madeira">
+          </div>
+          <div class="product-body">
+            <h3>Jogo Americano Raiz</h3>
+            <p class="product-desc">Kit com 4 peças em retalhos de linho, forro impermeável e acabamento reforçado.</p>
+            <span class="price">R$ 140,00 (kit)</span>
+            <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Jogo%20Americano%20Raiz!" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+              <i data-lucide="message-circle" style="width:15px;height:15px"></i> Pedir no WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <span class="tag encomenda">Sob Encomenda</span>
+            <img src="https://images.unsplash.com/photo-1591561954557-26941169b49e?w=700&auto=format&fit=crop&q=70" alt="Nécessaire de tecido artesanal com estampa floral">
+          </div>
+          <div class="product-body">
+            <h3>Nécessaire Flor de Chita</h3>
+            <p class="product-desc">Nécessaire forrada em retalhos de chita com zíper reforçado, ideal para presentear.</p>
+            <span class="price">R$ 65,00</span>
+            <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20N%C3%A9cessaire%20Flor%20de%20Chita!" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+              <i data-lucide="message-circle" style="width:15px;height:15px"></i> Pedir no WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <img src="https://images.unsplash.com/photo-1522708323590-d24dbb6b0267?w=700&auto=format&fit=crop&q=70" alt="Tapete de retalhos trançado artesanal">
+          </div>
+          <div class="product-body">
+            <h3>Tapete Trançado Oliva</h3>
+            <p class="product-desc">Tapete redondo 80cm trançado em tiras de retalho, antiderrapante na base.</p>
+            <span class="price">R$ 210,00</span>
+            <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20tenho%20interesse%20no%20Tapete%20Tran%C3%A7ado%20Oliva!" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+              <i data-lucide="message-circle" style="width:15px;height:15px"></i> Pedir no WhatsApp
+            </a>
+          </div>
+        </article>
+
+        <article class="product-card">
+          <div class="product-media">
+            <span class="tag encomenda">Sob Encomenda</span>
+            <img src="https://images.unsplash.com/photo-1615529162924-f8605388461d?w=700&auto=format&fit=crop&q=70" alt="Bolsa artesanal de retalhos costurados à mão">
+          </div>
+          <div class="product-body">
+            <h3>Bolsa Retalho & Couro</h3>
+            <p class="product-desc">Bolsa estruturada mesclando retalhos coloridos e detalhes em couro ecológico.</p>
+            <span class="price">a partir de R$ 180,00</span>
+            <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20tenho%20interesse%20na%20Bolsa%20Retalho%20%26%20Couro!" class="btn btn-whatsapp btn-sm" target="_blank" rel="noopener">
+              <i data-lucide="message-circle" style="width:15px;height:15px"></i> Pedir no WhatsApp
+            </a>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== QUEM SOMOS ===================== -->
+  <section id="historia">
+    <div class="container">
+      <div class="about-grid">
+        <div class="about-media">
+          <img src="https://images.unsplash.com/photo-1591129841117-3adfd313e34f?w=800&auto=format&fit=crop&q=70" alt="Mãos costurando retalhos de tecido artesanalmente">
+        </div>
+        <div class="about-text">
+          <span class="eyebrow">A arte por trás dos retalhos</span>
+          <h2>Um fio de memória em cada costura</h2>
+          <p>Tudo começou numa mesa de costura de família, entre pedaços de tecido que sobravam de outras peças e pareciam bons demais para virar lixo. Cada retalho guardava uma cor, uma textura, um pedacinho de história — e foi ali que nasceu a ideia de dar a eles uma segunda vida.</p>
+          <p>Hoje, a Retalh'Artes segue esse mesmo princípio: nada se desperdiça, tudo se transforma. Trabalhamos com tecidos recuperados e produção local, em pequenos lotes, respeitando o tempo do trabalho manual e o cuidado de quem costura cada ponto pensando em quem vai receber.</p>
+          <p>O resultado são peças que não têm réplica — porque nenhum retalho é igual ao outro, e nenhuma casa é igual à outra também.</p>
+          <div class="about-values">
+            <span class="value-pill"><i data-lucide="recycle" style="width:16px;height:16px"></i> Upcycling têxtil</span>
+            <span class="value-pill"><i data-lucide="hand" style="width:16px;height:16px"></i> Produção manual</span>
+            <span class="value-pill"><i data-lucide="map-pin" style="width:16px;height:16px"></i> Feito no Brasil</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ===================== ENCOMENDAS ===================== -->
+  <section id="encomendas">
+    <div class="container">
+      <div class="section-head">
+        <span class="eyebrow" style="justify-content:center; color:var(--mustard)">Encomendas sob medida</span>
+        <h2>Como encomendar sua peça</h2>
+        <p>Quer uma cor, um tamanho ou uma combinação de retalhos especial? É só seguir os passos abaixo.</p>
+      </div>
+
+      <div class="steps">
+        <div class="step">
+          <div class="num">1</div>
+          <h3>Fale com a gente</h3>
+          <p>Chame no WhatsApp e conte o que você imagina: peça, tamanho e ocasião.</p>
+        </div>
+        <div class="step">
+          <div class="num">2</div>
+          <h3>Escolha os retalhos</h3>
+          <p>Enviamos opções de tecidos e paletas de cores disponíveis no ateliê.</p>
+        </div>
+        <div class="step">
+          <div class="num">3</div>
+          <h3>Aprovação e produção</h3>
+          <p>Confirmado o pedido, sua peça é costurada à mão, com prazo combinado.</p>
+        </div>
+        <div class="step">
+          <div class="num">4</div>
+          <h3>Entrega com carinho</h3>
+          <p>Embalamos e enviamos (ou combinamos retirada) direto para você.</p>
+        </div>
+      </div>
+
+      <div class="final-cta">
+        <h3>Pronta para ganhar vida em retalhos?</h3>
+        <p>Fale agora com a Retalh'Artes e comece sua encomenda sob medida.</p>
+        <a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20Retalh%27Artes!%20Quero%20fazer%20uma%20encomenda%20sob%20medida." class="btn btn-primary" target="_blank" rel="noopener">
+          <i data-lucide="message-circle" style="width:18px;height:18px"></i> Iniciar encomenda no WhatsApp
+        </a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-col" style="max-width:340px">
+        <div class="footer-logo">Retalh'Artes</div>
+        <p>Artesanato afetivo feito à mão a partir de retalhos de tecido — peças exclusivas, sustentáveis e cheias de história.</p>
+      </div>
+      <div class="footer-col">
+        <h4>Navegação</h4>
+        <p><a href="#inicio">Início</a></p>
+        <p><a href="#criacoes">Nossas Criações</a></p>
+        <p><a href="#historia">Quem Somos</a></p>
+        <p><a href="#encomendas">Encomendas</a></p>
+      </div>
+      <div class="footer-col">
+        <h4>Redes sociais</h4>
+        <div class="social-links">
+          <a href="https://instagram.com/retalhartes" target="_blank" rel="noopener" aria-label="Instagram da Retalh'Artes">
+            <i data-lucide="instagram" style="width:18px;height:18px"></i>
+          </a>
+          <a href="https://wa.me/5521990824005" target="_blank" rel="noopener" aria-label="WhatsApp da Retalh'Artes">
+            <i data-lucide="message-circle" style="width:18px;height:18px"></i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="footer-bottom">
+      <span>&copy; 2026 Retalh'Artes. Todos os direitos reservados.</span>
+      <span>Feito à mão, com afeto, retalho por retalho.</span>
+    </div>
+  </div>
+</footer>
+
+<a href="https://wa.me/5521990824005?text=Ol%C3%A1%2C%20Retalh%27Artes!%20Gostaria%20de%20saber%20mais%20sobre%20as%20pe%C3%A7as." class="float-wa" target="_blank" rel="noopener" aria-label="Fale conosco no WhatsApp">
+  <i data-lucide="message-circle" style="width:26px;height:26px"></i>
+</a>
+
+<script>
+  // Inicializa ícones Lucide
+  lucide.createIcons();
+
+  // Menu hamburguer mobile
+  const hamburgerBtn = document.getElementById('hamburgerBtn');
+  const mainNav = document.getElementById('mainNav');
+  const iconMenu = document.getElementById('iconMenu');
+
+  function toggleMenu(forceClose){
+    const isOpen = mainNav.classList.contains('open');
+    const shouldOpen = forceClose ? false : !isOpen;
+
+    mainNav.classList.toggle('open', shouldOpen);
+    hamburgerBtn.setAttribute('aria-expanded', String(shouldOpen));
+    hamburgerBtn.innerHTML = shouldOpen
+      ? '<i data-lucide="x" id="iconMenu"></i>'
+      : '<i data-lucide="menu" id="iconMenu"></i>';
+    lucide.createIcons();
+  }
+
+  hamburgerBtn.addEventListener('click', () => toggleMenu());
+
+  // Fecha o menu mobile ao clicar em um link e faz rolagem suave
+  document.querySelectorAll('.main-nav a').forEach(link => {
+    link.addEventListener('click', () => {
+      if (mainNav.classList.contains('open')) toggleMenu(true);
+    });
+  });
+
+  // Fecha o menu se a tela for redimensionada para desktop
+  window.addEventListener('resize', () => {
+    if (window.innerWidth > 900 && mainNav.classList.contains('open')) {
+      toggleMenu(true);
+    }
+  });
+</script>
+
+</body>
+</html>
