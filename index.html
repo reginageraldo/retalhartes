@@ -215,8 +215,10 @@
       padding: 10px 24px 26px;
     }
     nav.main-nav ul li{ width:100%; padding: 12px 0; border-bottom:1px solid var(--beige); }
+    nav.main-nav a{ display:block; font-size: 1.02rem; padding: 6px 0; }
+    nav.main-nav li:last-child{ border-bottom:none; padding-top: 16px; }
     .nav-actions .btn-whatsapp-desktop{ display:none; }
-    .hamburger{ display:flex; }
+    .hamburger{ display:flex; padding: 10px; }
   }
   @media (min-width: 901px){
     .hamburger{ display:none; }
@@ -498,6 +500,62 @@
     transition: transform .2s ease;
   }
   .float-wa:hover{ transform: scale(1.08); background: var(--olive-dark); }
+
+  /* ============================================================
+     AJUSTES DE RESPONSIVIDADE — TELAS MENORES (TABLET / MOBILE)
+     ============================================================ */
+  @media (max-width: 640px){
+    .container{ padding: 0 18px; }
+
+    section{ padding: 64px 0; }
+    .section-head{ margin-bottom: 40px; }
+    .section-head p{ font-size: 0.98rem; }
+
+    /* Header mais compacto no celular */
+    .nav-wrap{ padding: 14px 18px; }
+    .logo{ font-size: 1.25rem; gap:8px; }
+    .logo .logo-icon{ width: 30px; height:30px; }
+    .logo .logo-icon svg{ width:16px; height:16px; }
+    nav.main-nav{ top: 61px; }
+
+    /* Hero */
+    .hero{ padding: 56px 18px 72px; }
+    .hero-grid{ gap: 36px; }
+    .hero p.lead{ font-size: 1rem; }
+    .hero-ctas{ flex-direction:column; align-items:stretch; width:100%; }
+    .hero-ctas .btn{ width:100%; }
+    .hero-badges{ flex-direction:column; align-items:center; gap:14px; margin-top:32px; }
+    .quilt{ max-width: min(300px, 78vw); padding: 16px; }
+
+    /* Galeria de produtos: uma coluna confortável no celular */
+    .gallery-grid{ grid-template-columns: 1fr; gap: 22px; }
+    .product-body{ padding: 18px 18px 20px; }
+
+    /* Quem Somos */
+    .about-text p:first-of-type::first-letter{ font-size: 2.6rem; }
+    .about-values{ justify-content:center; gap: 14px; }
+
+    /* Encomendas */
+    .step{ padding: 22px 18px; }
+    .final-cta{ padding: 40px 20px; }
+    .final-cta .btn{ width:100%; }
+
+    /* Rodapé empilhado e centralizado */
+    .footer-grid{ flex-direction:column; text-align:center; gap:28px; }
+    .footer-col p{ margin: 0 auto; }
+    .social-links{ justify-content:center; }
+    .footer-bottom{ flex-direction:column; text-align:center; gap:6px; }
+
+    /* Botão flutuante de WhatsApp menor no celular */
+    .float-wa{ width: 52px; height:52px; bottom:16px; right:16px; }
+  }
+
+  @media (max-width: 400px){
+    .hero h1{ font-size: 1.9rem; }
+    .section-head h2{ font-size: 1.6rem; }
+    .eyebrow{ font-size: 0.7rem; }
+    .quilt{ max-width: min(260px, 80vw); }
+  }
 </style>
 </head>
 <body>
@@ -810,12 +868,17 @@
     lucide.createIcons();
   }
 
-  hamburgerBtn.addEventListener('click', () => toggleMenu());
+  hamburgerBtn.addEventListener('click', () => {
+    toggleMenu();
+    // Trava a rolagem do fundo enquanto o menu mobile está aberto
+    document.body.style.overflow = mainNav.classList.contains('open') ? 'hidden' : '';
+  });
 
   // Fecha o menu mobile ao clicar em um link e faz rolagem suave
   document.querySelectorAll('.main-nav a').forEach(link => {
     link.addEventListener('click', () => {
       if (mainNav.classList.contains('open')) toggleMenu(true);
+      document.body.style.overflow = '';
     });
   });
 
@@ -823,6 +886,7 @@
   window.addEventListener('resize', () => {
     if (window.innerWidth > 900 && mainNav.classList.contains('open')) {
       toggleMenu(true);
+      document.body.style.overflow = '';
     }
   });
 </script>
